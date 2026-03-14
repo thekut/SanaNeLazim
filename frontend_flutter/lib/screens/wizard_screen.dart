@@ -15,7 +15,6 @@ class _WizardScreenState extends State<WizardScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-  // State variables for dynamic sliders
   double _stockSlider = 40;
   double _goldSlider = 30;
   double _besSlider = 30;
@@ -113,15 +112,15 @@ class _WizardScreenState extends State<WizardScreen> {
     return Column(children: [
       TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Mevcut Yaşınız (örn. 35)')),
       const SizedBox(height: 16),
-      TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Tahmini Vefat Yaşı (örn. 90)')),
+      TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Tahmini Vefat Yaşınız :(')),
     ]);
   }
 
   Widget _buildFinancialInputs() {
     return Column(children: [
-      TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Aylık Net Geliriniz (TL)')),
+      TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Aylık Net Geliriniz (TL)', prefixIcon: Icon(Icons.trending_up, color: AppColors.successGreen))),
       const SizedBox(height: 16),
-      TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Aylık Gideriniz (TL)')),
+      TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Aylık Gideriniz (TL)', prefixIcon: Icon(Icons.trending_down, color: AppColors.errorRed))),
     ]);
   }
 
@@ -143,9 +142,9 @@ class _WizardScreenState extends State<WizardScreen> {
 
   Widget _buildGoalInputs() {
     return Column(children: [
-      TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: '70+ Yaş Aylık Bakım Evi (TL)', helperText: 'Varsayılan: 200.000 TL')),
+      TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: '70+ Yaş Aylık Bakım Evi (TL)', helperText: 'Varsayılan: 200.000 TL (Günümüz fiyatlarıyla)')),
       const SizedBox(height: 16),
-      TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Bırakılacak Miras (TL)', helperText: 'Sıfırlamak için 0 bırakın.')),
+      TextFormField(keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Bırakılacak Miras (TL)', helperText: 'Tüm birikiminizi kendi yaşamınızda kullanmak istiyorsanız 0 bırakın.')),
     ]);
   }
 }
