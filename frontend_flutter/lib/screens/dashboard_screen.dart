@@ -8,7 +8,9 @@ import '../providers/user_data_provider.dart';
 
 class DashboardScreen extends StatefulWidget {
   final TierLevel tier;
-  const DashboardScreen({super.key, required this.tier});
+  final http.Client? httpClient;
+
+  const DashboardScreen({super.key, required this.tier, this.httpClient});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -45,11 +47,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       "legacyTarget": data.legacyTarget,
     };
 
-    final response = await http.post(
-      url,
-      headers: {"Content-Type": "application/json"},
-      body: json.encode(requestBody),
-    );
+    final headers = {"Content-Type": "application/json"};
+    final body = json.encode(requestBody);
+
+    final response = widget.httpClient != null
+        ? await widget.httpClient!.post(url, headers: headers, body: body)
+        : await http.post(url, headers: headers, body: body);
 
     if (response.statusCode == 200) {
       return json.decode(response.body);
