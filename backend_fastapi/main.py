@@ -1,13 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from core.config import settings
 
-app = FastAPI(title="SananeLazim API")
+app = FastAPI(title=settings.PROJECT_NAME, version=settings.VERSION)
 
 # İŞTE BURASI CHROME'UN GÜVENLİK KALKANINI AŞAN KISIM (CORS)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Her yerden gelen isteğe izin ver
+    allow_origins=settings.BACKEND_CORS_ORIGINS,  # Her yerden gelen isteğe izin ver
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
