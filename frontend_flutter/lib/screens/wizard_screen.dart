@@ -43,7 +43,7 @@ class _WizardScreenState extends State<WizardScreen> {
     provider.updatePortfolio(savings, _stockSlider, _goldSlider, _besSlider);
 
     // 3. Sayfa Geçişi
-    if (_currentPage < 4) {
+    if (_currentPage < 3) {
       _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     } else {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => DashboardScreen(tier: widget.tier)));
@@ -66,7 +66,7 @@ class _WizardScreenState extends State<WizardScreen> {
         elevation: 0,
         leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.primaryBlue), onPressed: _prevPage),
         title: LinearProgressIndicator(
-          value: (_currentPage + 1) / 5,
+          value: (_currentPage + 1) / 4,
           backgroundColor: AppColors.textSecondaryLight.withOpacity(0.2),
           valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primaryBlue),
           borderRadius: BorderRadius.circular(8),
@@ -85,7 +85,8 @@ class _WizardScreenState extends State<WizardScreen> {
                   _buildQuestionPage('Yaşınız kaç?', 'Tahmini vefat yaşınızı da göz önünde bulundurarak aktüeryal hesaplama yapacağız.', Icons.cake, _buildAgeInputs()),
                   _buildQuestionPage('Finansal Durumunuz', 'Aylık net geliriniz ve gideriniz.', Icons.account_balance, _buildFinancialInputs()),
                   _buildQuestionPage('Portföy Dağılımınız', 'Mevcut varlıklarınızın basit dağılımı.', Icons.pie_chart, _buildPortfolioSliders()),
-                  _buildQuestionPage('Gelecek Hedefleri', '70+ yaş bakım evi bütçesi ve miras.', Icons.health_and_safety, const Center(child: Text('Yakında eklenecek...'))),
+                  // TODO: Gelecek Hedefleri - 70+ yaş bakım evi bütçesi ve miras
+                  // _buildQuestionPage('Gelecek Hedefleri', '70+ yaş bakım evi bütçesi ve miras.', Icons.health_and_safety, const Center(child: Text('Yakında eklenecek...'))),
                 ],
               ),
             ),
@@ -95,7 +96,7 @@ class _WizardScreenState extends State<WizardScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _saveDataAndNext,
-                  child: Text(_currentPage == 4 ? 'Sonuçları Gör' : 'Devam Et', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  child: Text(_currentPage == 3 ? 'Sonuçları Gör' : 'Devam Et', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ),
             )
